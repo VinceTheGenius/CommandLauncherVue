@@ -1,0 +1,71 @@
+﻿@{
+    Layout = null;
+}
+
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
+
+<div id="app">
+
+    <h1>Command Launcher</h1>
+
+    <h2>The easiest way to launch a command</h2>
+    <div>
+        <label>
+
+            <select class="command" name="Command" v-model="selectedCommand">
+                <option value="" disabled selected hidden>Select a command :</option>
+                <option v-for="command in commands" :key="command.commandName">
+                    {{ command.commandName }}
+                </option>
+            </select>
+
+        </label>
+        <br />
+        <input type="button" value="Launch" v-on:click="clickCommand" />
+    </div>
+
+
+
+    <textarea id="taResult" rows="15" cols="40" class="result" v-model="commandArea">
+    </textarea>
+
+</div>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                selectedCommand: null,
+                commandArea: '',
+                commands: [
+                    {
+                        "commandName": "ipconfig",
+                        "commandFile": "ipconfig"
+                    },
+                    {
+                        "commandName": "systeminfo",
+                        "commandFile": "systeminfo"
+                    },
+                    {
+                        "commandName": "ping",
+                        "commandFile": "ping",
+                        "commandArgs": "www.google.fr"
+                    }
+                ]
+            }
+        },
+        methods: {
+            clickCommand: function () {
+                axios
+                    .get('/Home/Launch', {
+                        'Command': this.selectedCommand
+                    })
+                    .then(response => {
+                        debugger;
+                        (this.commandArea += response.output);
+                    });
+            }
+        }
+    }).mount('#app')
+</script>

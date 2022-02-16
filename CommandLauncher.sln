@@ -5,6 +5,7 @@ VisualStudioVersion = 15.0.28307.1259
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLauncher", "CommandLauncher\CommandLauncher.csproj", "{0C4F0E40-7EE3-4C00-B7FA-BDD602E0E21D}"
 EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

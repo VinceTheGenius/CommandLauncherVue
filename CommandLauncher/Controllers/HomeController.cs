@@ -55,6 +55,13 @@ namespace CommandLauncher.Controllers
             return View(Commands);
         }
 
+        public ActionResult ListCommand()
+        {
+            List<Command> CommandList = GetCommandList();
+
+            return Json(CommandList);
+        }
+
         public /*async Task<*/IActionResult/*>*/ Launch(int Command)
         {
             List<Command> CommandList = GetCommandList();

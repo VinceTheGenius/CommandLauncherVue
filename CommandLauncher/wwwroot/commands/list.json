@@ -12,4 +12,10 @@
     "commandFile": "ping",
     "commandArgs": "www.google.fr"
   }
+  ,
+  {
+    "commandName": "ping2",
+    "commandFile": "ping",
+    "commandArgs": "www.free.fr"
+  }
 ]

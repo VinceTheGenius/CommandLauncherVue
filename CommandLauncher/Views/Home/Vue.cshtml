@@ -18,7 +18,6 @@
         <label>
 
             <select class="command" name="Command" v-model="selectedCommand">
-                <option value="0" disabled hidden>Select a command :</option>
                 <option v-for="(command, index) in commands" :key="index" :value="index">
                     {{ command.commandName }}
                 </option>
@@ -26,11 +25,10 @@
 
         </label>
         <br />
-        <input type="button" value="Load" v-on:click="getCommands" />
-        <input type="button" value="Launch" v-on:click="clickCommand" />
+        <input class="btn1" type="button" value="Load" v-on:click="getCommands" v-bind:class="{ isLoading: isLoaded }" />
+        <input class="btn2" type="button" value="Launch" v-on:click="clickCommand" v-bind:class="{ isLoading: isLoading }" />
+        <input class="btn3" type="button"value="Refresh" v-on:click="refresh" />
     </div>
-
-
 
     <textarea id="taResult" rows="15" cols="40" class="result" v-model="commandArea">
     </textarea>
@@ -43,11 +41,14 @@
             return {
                 selectedCommand: null,
                 commandArea: '',
-                commands: []
+                commands: [],
+                isLoading: false,
+                isLoaded: false,
             }
         },
         methods: {
             clickCommand: function () {
+                this.isLoading = true;
                 axios
                     .get('/Home/Launch', {
                         params: {
@@ -55,6 +56,7 @@
                         }
                     })
                     .then(response => {
+                        this.isLoading = false;
                         (this.commandArea += response.output);
                     });
             },
@@ -63,7 +65,11 @@
                     .get('/Home/ListCommand')
                     .then(response => {
                         (this.commands = response);
+                        this.isLoaded = true;
                     });
+            },
+            refresh: function () {
+                this.commandArea = '';
             }
         }
     }).mount('#app')

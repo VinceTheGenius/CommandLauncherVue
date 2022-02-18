@@ -74,6 +74,7 @@ input:focus {
 
 input[type="button"]:not(.isLoading) {
     background: linear-gradient(315deg,#42d392 25%,#647eff);
+    cursor: pointer;
 }
 
 input[type="button"]:not(:hover) {
@@ -89,7 +90,6 @@ input[type="button"] {
     padding: 16px 32px;
     text-decoration: none;
     margin: 4px .5rem;
-    cursor: pointer;
     transition: .5s;
     box-shadow: 0px 0px 40px #999;
 }
@@ -101,6 +101,7 @@ input[type="button"]:hover {
 .isLoading {
     background-color: red;
     cursor: not-allowed;
+    transition: .2s;
 }
 
 .isLoading:hover {

@@ -65,7 +65,8 @@
                     .get('/Home/ListCommand')
                     .then(response => {
                         (this.commands = response);
-                        this.isLoaded = true;
+                        setTimeout(() => { this.isLoaded = true; }, 1000);
+                        
                     });
             },
             refresh: function () {
